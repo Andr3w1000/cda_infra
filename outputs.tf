@@ -42,8 +42,3 @@ output "databricks_workspace_url" {
   description = "URL of the Databricks workspace."
   value       = module.databricks.workspace_url
 }
-
-output "databricks_sp_client_id" {
-  description = "Client ID of the Databricks service principal."
-  value       = azuread_application.databricks_jobs.client_id
-}
