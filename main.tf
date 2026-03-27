@@ -94,6 +94,13 @@ module "databricks_sp" {
   depends_on = [module.databricks]
 }
 
+# Grant the SP read access to the Event Hub so it can consume messages from Databricks jobs.
+resource "azurerm_role_assignment" "databricks_sp_eventhub_receiver" {
+  scope                = module.event_hub.namespace_id
+  role_definition_name = "Azure Event Hubs Data Receiver"
+  principal_id         = module.databricks_sp.object_id
+}
+
 # Grant the SP Contributor access on the Databricks workspace so it can submit jobs.
 resource "azurerm_role_assignment" "databricks_sp_contributor" {
   scope                = module.databricks.id
