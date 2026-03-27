@@ -87,3 +87,9 @@ module "databricks_sp" {
   depends_on = [module.databricks]
 }
 
+resource "databricks_metastore_assignment" "this" {
+  provider     = databricks.account
+  metastore_id = var.metastore_id
+  workspace_id = module.databricks.workspace_id
+}
+

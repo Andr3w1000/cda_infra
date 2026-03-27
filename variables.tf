@@ -132,6 +132,11 @@ variable "owner_object_id" {
 # Databricks
 # -------------------------------------------------------
 
+variable "metastore_id" {
+  description = "Unity Catalog metastore ID. Get this from account/ outputs after running account/ apply first."
+  type        = string
+}
+
 variable "databricks_sku" {
   description = "Databricks workspace SKU. 'standard', 'premium', or 'trial'."
   type        = string
