@@ -49,9 +49,9 @@ resource "azurerm_databricks_access_connector" "this" {
 # -------------------------------------------------------
 
 resource "databricks_metastore" "this" {
-  name         = "${var.project}-metastore"
-  region       = var.location
-  storage_root = "abfss://${azurerm_storage_container.metastore.name}@${azurerm_storage_account.metastore.name}.dfs.core.windows.net/"
+  name          = "${var.project}-metastore"
+  region        = var.location
+  storage_root  = "abfss://${azurerm_storage_container.metastore.name}@${azurerm_storage_account.metastore.name}.dfs.core.windows.net/"
   force_destroy = false
 
   depends_on = [azurerm_role_assignment.access_connector_storage]
@@ -68,10 +68,3 @@ resource "databricks_storage_credential" "this" {
   comment = "Managed identity credential for Unity Catalog metastore root storage."
 }
 
-resource "databricks_external_location" "metastore_root" {
-  name            = "metastore-root"
-  metastore_id    = databricks_metastore.this.id
-  url             = "abfss://${azurerm_storage_container.metastore.name}@${azurerm_storage_account.metastore.name}.dfs.core.windows.net/"
-  credential_name = databricks_storage_credential.this.name
-  comment         = "Root storage for the Unity Catalog metastore."
-}
