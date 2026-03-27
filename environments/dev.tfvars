@@ -19,7 +19,7 @@ function_app_sku        = "B1"
 function_app_python_version = "3.11"
 
 # Event Hub — Basic is the cheapest tier
-eventhub_namespace_sku          = "Basic"
+eventhub_namespace_sku          = "Standard"
 eventhub_namespace_capacity     = 1
 eventhub_partition_count        = 2
 eventhub_message_retention_days = 1
@@ -29,4 +29,4 @@ databricks_account_id = "e9cbaae9-1059-4979-8eef-235061afc85c"
 owner_object_id       = "1739b579-dc72-48f7-b7a5-1f931a1adca7"
 
 # Run account/ apply first, then copy the metastore_id output here.
-# metastore_id = ""
+metastore_id = "f64b3916-9b2f-42ae-b845-b2e46afffad2"

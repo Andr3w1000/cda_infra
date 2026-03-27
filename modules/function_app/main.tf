@@ -50,9 +50,9 @@ resource "azurerm_linux_function_app" "main" {
 
   app_settings = {
     # Managed Identity connection — no secrets needed
-    "EventHubConnection__fullyQualifiedNamespace" = var.eventhub_namespace_fqdn
-    "EventHubName"                                = var.eventhub_name
-    "FUNCTIONS_WORKER_RUNTIME"                    = "python"
+    "EVENTHUB_FULLY_QUALIFIED_NAMESPACE" = var.eventhub_namespace_fqdn
+    "EVENTHUB_NAME"                      = var.eventhub_name
+    "FUNCTIONS_WORKER_RUNTIME"           = "python"
   }
 
   tags = var.tags
