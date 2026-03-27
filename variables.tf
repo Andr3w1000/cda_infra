@@ -120,6 +120,15 @@ variable "key_vault_purge_protection_enabled" {
 }
 
 # -------------------------------------------------------
+# Owner
+# -------------------------------------------------------
+
+variable "owner_object_id" {
+  description = "Azure AD object ID of the user running Terraform interactively (used for personal role assignments, e.g. Event Hub receiver)."
+  type        = string
+}
+
+# -------------------------------------------------------
 # Databricks
 # -------------------------------------------------------
 

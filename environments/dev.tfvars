@@ -26,3 +26,4 @@ eventhub_message_retention_days = 1
 
 azure_tenant_id = "60061333-74ad-454c-87de-9e487218dc5b"
 databricks_account_id = "e9cbaae9-1059-4979-8eef-235061afc85c"
+owner_object_id = "1739b579-dc72-48f7-b7a5-1f931a1adca7"

@@ -41,13 +41,6 @@ module "function_app" {
   eventhub_name           = module.event_hub.eventhub_name
 }
 
-# Grant the Function App's managed identity send-only access to the Event Hub Namespace.
-resource "azurerm_role_assignment" "function_app_eventhub_sender" {
-  scope                = module.event_hub.namespace_id
-  role_definition_name = "Azure Event Hubs Data Sender"
-  principal_id         = module.function_app.principal_id
-}
-
 module "key_vault" {
   source = "./modules/key_vault"
 
@@ -92,19 +85,5 @@ module "databricks_sp" {
   databricks_account_id = var.databricks_account_id
 
   depends_on = [module.databricks]
-}
-
-# Grant the SP read access to the Event Hub so it can consume messages from Databricks jobs.
-resource "azurerm_role_assignment" "databricks_sp_eventhub_receiver" {
-  scope                = module.event_hub.namespace_id
-  role_definition_name = "Azure Event Hubs Data Receiver"
-  principal_id         = module.databricks_sp.object_id
-}
-
-# Grant the SP Contributor access on the Databricks workspace so it can submit jobs.
-resource "azurerm_role_assignment" "databricks_sp_contributor" {
-  scope                = module.databricks.id
-  role_definition_name = "Contributor"
-  principal_id         = module.databricks_sp.object_id
 }
 
