@@ -12,8 +12,9 @@ resource "databricks_service_principal" "this" {
 }
 
 resource "databricks_access_control_rule_set" "this" {
-  provider = databricks.account
-  name     = "accounts/${var.databricks_account_id}/servicePrincipals/${azuread_application.this.client_id}/ruleSets/default"
+  provider   = databricks.account
+  depends_on = [databricks_service_principal.this]
+  name       = "accounts/${var.databricks_account_id}/servicePrincipals/${azuread_application.this.client_id}/ruleSets/default"
 
   grant_rules {
     principals = ["groups/accountAdminGroup"]
